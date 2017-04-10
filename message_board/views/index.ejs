@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Message Board</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+  </head>
+  <body>
+    <h2>The Dojo Message Board</h2>
+    <!-- New Post Form -->
+    <form class="form" action="/newpost" method="post">
+      Name:<input type="text" name="name">
+      <p>Message:</p>
+      <p><textarea name="text" rows="4" cols="80"></textarea></p>
+      <button type="submit" name="button">Post message</button>
+    </form>
+    <!-- Display all Posts with Comments in-line -->
+    <% for (i=0; i<posts.length; i++) { %>
+      <hr>
+      <h4>Name: <%= posts[i].name %></h4>
+      <h4>Message: <%= posts[i].text %></h4>
+      <h6>Comments: <%= posts[i]._comments.length %></h6>
+      <% for (k=0; k<posts[i]._comments.length; k++) { %>
+        <h5>Name: <%= posts[i]._comments[k].name %></h5>
+        <h5>Comment: <%= posts[i]._comments[k].text %></h5>
+      <% } %>
+      <!-- New Comment Form -->
+      <form class="form" action="/newcomment/<%= posts[i]._id %>" method="post">
+        Name:<input type="text" name="name">
+        <p>Comment:</p>
+        <p><textarea name="text" rows="4" cols="80"></textarea></p>
+        <button type="submit" name="button">Post comment</button>
+      </form>
+      <hr>
+    <% } %>
+
+  </body>
+</html>
