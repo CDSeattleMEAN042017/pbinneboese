@@ -3,7 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Message Board</title>
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./style.css"> -->
+    <style type="text/css">
+      .comment{
+        margin-left: 20px;
+      }
+    </style>
   </head>
   <body>
     <h2>The Dojo Message Board</h2>
@@ -20,10 +25,12 @@
       <h4>Name: <%= posts[i].name %></h4>
       <h4>Message: <%= posts[i].text %></h4>
       <h6>Comments: <%= posts[i]._comments.length %></h6>
-      <% for (k=0; k<posts[i]._comments.length; k++) { %>
-        <h5>Name: <%= posts[i]._comments[k].name %></h5>
-        <h5>Comment: <%= posts[i]._comments[k].text %></h5>
-      <% } %>
+      <div class="comment">
+        <% for (k=0; k<posts[i]._comments.length; k++) { %>
+          <h5>Name: <%= posts[i]._comments[k].name %></h5>
+          <h5>Comment: <%= posts[i]._comments[k].text %></h5>
+        <% } %>
+      </div>
       <!-- New Comment Form -->
       <form class="form" action="/newcomment/<%= posts[i]._id %>" method="post">
         Name:<input type="text" name="name">
@@ -31,7 +38,6 @@
         <p><textarea name="text" rows="4" cols="80"></textarea></p>
         <button type="submit" name="button">Post comment</button>
       </form>
-      <hr>
     <% } %>
 
   </body>

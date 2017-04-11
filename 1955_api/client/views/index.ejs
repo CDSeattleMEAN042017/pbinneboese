@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mongoose Home</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  </head>
+  <body>
+    <p><img src="/aardvark.jpg" alt="aardvark"></p>
+    <p>Aaron, our first critter</p>
+    <h3>List of Critters</h3>
+    <table id="listing">
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Age</th><th>Weight</th><th>Diet</th><th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i=0; i<critters.length; i++) { %>
+          <tr>
+            <td><%= critters[i].ident %></td>
+            <td><%= critters[i].name %></td>
+            <td><%= critters[i].age %></td>
+            <td><%= critters[i].weight %></td>
+            <td><%= critters[i].diet %></td>
+            <td>
+              <form class="button" action='/<%= critters[i].ident %>' method='get'>
+                <input type="submit" value="Select">
+              </form>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <form class="button" action='/new' method='get'>
+      <button type="submit">Add New Critter</button>
+      <!-- <button type="submit" name="addnew">Add New Critter</button> -->
+    </form>
+  </body>
+</html>
